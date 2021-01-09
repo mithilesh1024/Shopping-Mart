@@ -14,15 +14,16 @@ def index(request):
         "prod": product
     }
     if request.method == "POST":
-        # print(request.POST)
-        if request.POST["sign-out"]:
+        print(request.POST)
+        if request.POST.get("sign-out"):
             if "name" in request.session:
                 del request.session["name"]
                 del request.session["costumerID"]
                 return redirect("index")
-        if 'name' in request.session:
-            if request.method == "add-to-cart":
-                # print("cant add")
+        if "name" in request.session:
+            # print("name")
+            if "add-to-cart" in request.POST:
+                print("cant add")
                 add_to_cart(int(request.POST.get("add-to-cart")), int(request.session.get("costumerID")))
     if "name" in request.session:
         data = {
