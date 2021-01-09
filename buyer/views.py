@@ -61,16 +61,19 @@ def signin(request):
     if "name" in request.session:
         return redirect("index")
     if request.method == "POST":
+        print("post")
         if request.POST.get("login"):
             email = request.POST.get("email")
             password = request.POST.get("password")
             exist = Costumer.objects.filter(email=email, password=password).exists()
+            print(f"${email} ${password} ${exist}")
             if exist:
                 l = Costumer.objects.get(email=email, password=password)
                 request.session["costumerID"] = l.id
                 request.session["name"] = l.firstName
                 return redirect("index")
             else:
+                print("login error")
                 mess = {
                     "error": "Email Or Password Is Wrong. Please try again."
                 }

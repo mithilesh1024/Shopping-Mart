@@ -28,6 +28,7 @@
                 </h3>
                 <div class="container my-4">
                     <form action="#" method="post">
+                        {% csrf_token %}
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
                             <input type="email" class="form-control" name="email" id="exampleInputEmail1"
@@ -44,7 +45,7 @@
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" name="remember-me" for="exampleCheck1">Remember Me</label>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-sm btn-block my-4">Log In</button>
+                        <button type="submit" class="btn btn-primary btn-sm btn-block my-4" name="login" value="login">Log In</button>
                     </form>
                 </div>
             </div>
