@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
 from .models import Cart, Costumer
 from seller.models import Product
-from buyer.utils import cal_price, add_to_cart, delete_cart_item, add_user, get_Products
+from buyer.utils import cal_price, add_to_cart, delete_cart_item, add_user, get_Products, Cart_image
 from PIL import Image
 
 
@@ -42,7 +42,7 @@ def cart(request):
         if request.method == "POST":
             delete_cart_item(request.POST.get("remove-from-cart"))
         data = {
-            "data": Cart.objects.filter(buyer=request.session.get("costumerID")),
+            "data": Cart_image(Cart.objects.filter(buyer=request.session.get("costumerID"))),
             "price": cal_price(Cart.objects.filter(buyer=request.session.get("costumerID"))),
             "user": request.session.get("name")
         }

@@ -44,3 +44,14 @@ def get_Products(products):
         except:
             print("error")
     return products
+
+
+def Cart_image(cart):
+    for c in cart:
+        try:
+            data = base64.b64encode(c.products.image)
+            data = data.decode("UTF-8")
+            c.products.image = data
+        except:
+            print(f"error")
+    return cart
